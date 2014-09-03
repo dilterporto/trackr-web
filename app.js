@@ -6,7 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var app = express(),
-    engine = require('ejs-locals');
+    engine = require('ejs-locals'),
+    mongoose = require('mongoose'),    
+    db = mongoose.connection;
 
 //  rotas e api
 var routes = require('./server/config/routes')(app),
@@ -37,9 +39,18 @@ app.use(function(req, res, next) {
 
 /// error handlers
 
+// database for tests
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+  console.log('ok');
+});
+
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
+    
+    mongoose.connect('mongodb://trackr:devmaster@kahana.mongohq.com:10037/app29153307');
+
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {

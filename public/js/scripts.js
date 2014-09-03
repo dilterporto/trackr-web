@@ -1,29 +1,15 @@
 
 $(document).ready(function() {
 
-  /* google maps -----------------------------------------------------*/
-  google.maps.event.addDomListener(window, 'load', initialize);
+  var mapa = app.mapa.create('map-canvas');
 
-  function initialize() {
+  $('#add').click(function(){
 
-    /* position Amsterdam */
-    var latlng = new google.maps.LatLng(52.3731, 4.8922);
+      mapa.addLocal({ latitude: 52.3731, longitude: 4.8922, nome: 'POSTO AUTONOVO'});
 
-    var mapOptions = {
-      center: latlng,
-      scrollWheel: false,
-      zoom: 13
-    };
+  });
 
-    var marker = new google.maps.Marker({
-      position: latlng,
-      url: '/',
-      animation: google.maps.Animation.DROP
-    });
-
-    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-    marker.setMap(map);
-
-  };
-  /* end google maps -----------------------------------------------------*/
 });
+
+
+//19.51220237451197 --40.1242794921875

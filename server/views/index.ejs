@@ -15,17 +15,23 @@
         </div>          
       </div>
 			<div class="row">
-        <ul class="list-group">
-          <li class="list-group-item"> <label class="label label-danger">#33</label> <a href="">João Fernandes</a> <i class="glyphicon glyphicon-map-marker"></i> em <a href="">POSTO Petrobras</a><span class="badge">329kg</span></li>
+        <ul class="list-group" data-bind="foreach: locais">
+          <li class="list-group-item">
+            <label class="label label-success">#12</label>
+            <a href="">Maria Almeida</a> em <a href="" data-bind="text: nome"></a><span class="badge">298kg</span>
+            <br />
+            <small><i class="glyphicon glyphicon-map-marker"></i> <span data-bind="text: latitude() + ' ' + longitude()"></span></small>            
+          </li>
+          <!-- <li class="list-group-item"> <label class="label label-danger">#33</label> <a href="">João Fernandes</a> <i class="glyphicon glyphicon-map-marker"></i> em <a href="">POSTO Petrobras</a><span class="badge">329kg</span></li>
           <li class="list-group-item"> <label class="label label-success">#12</label> <a href="">Maria Almeida</a> <i class="glyphicon glyphicon-map-marker"></i> em <a href="">Largão das Compras</a><span class="badge">298kg</span></li>
           <li class="list-group-item"> <label class="label label-default">#01</label> <a href="">Marcos Porto</a> <i class="glyphicon glyphicon-map-marker"></i> em <a href="">Supermercado Novo</a><span class="badge">234kg</span></li>
           <li class="list-group-item"> <label class="label label-info">#76</label> <a href="">Tawnee Mk</a> <i class="glyphicon glyphicon-map-marker"></i> em <a href="">POSTO Nova Esperança</a><span class="badge">12kg</span></li>
           <li class="list-group-item"> <label class="label label-danger">#33</label> <a href="">João Fernandes</a> <i class="glyphicon glyphicon-map-marker"></i> em <a href="">POSTO Petrobras</a><span class="badge">10kg</span></li>
           <li class="list-group-item"> <label class="label label-success">#12</label> <a href="">Maria Almeida</a> <i class="glyphicon glyphicon-map-marker"></i> em <a href="">Largão das Compras</a><span class="badge">0kg</span></li>
-          <li class="list-group-item"> <label class="label label-default">#01</label> <a href="">Marcos Porto</a> <i class="glyphicon glyphicon-map-marker"></i> em <a href="">Supermercado Novo</a><span class="badge">3kg</span></li>
+          <li class="list-group-item"> <label class="label label-default">#01</label> <a href="">Marcos Porto</a> <i class="glyphicon glyphicon-map-marker"></i> em <a href="">Supermercado Novo</a><span class="badge">3kg</span></li> -->
 
         </ul>
-
+        <button id="add" type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> adicionar</button>
       </div>
 
     </div>
