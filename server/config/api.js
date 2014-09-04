@@ -20,4 +20,12 @@ module.exports = function(app){
 	  res.send({ _: 'i am a resource' });
 	});
 
+	app.post('/api/checkin', function(req, res){
+
+		app.io.emit('checkin', { latitude: 52.3731, longitude: 4.8922, nome: 'POSTO AUTONOVO'} );
+
+		res.send(200);		
+
+	});
+
 };

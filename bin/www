@@ -1,9 +1,15 @@
 #!/usr/bin/env node
 var debug = require('debug')('trackr-web');
-var app = require('../app');
+var app = require('../app'),
+	server = require('http').Server(app),
+	socket = require('socket.io');
 
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
+
+io = socket.listen(server);
+
+app.io = io;

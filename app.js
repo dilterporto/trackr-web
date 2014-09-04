@@ -1,4 +1,4 @@
-var express = require('express.io');
+var express = require('express');
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
@@ -13,9 +13,6 @@ var app = express(),
 //  rotas e api
 var routes = require('./server/config/routes')(app),
     api = require('./server/config/api')(app);
-
-//  socket.io
-app.http().io();
 
 app.engine('ejs', engine);
 

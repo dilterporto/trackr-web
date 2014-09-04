@@ -1,13 +1,15 @@
 
 $(document).ready(function() {
 
-  var mapa = app.mapa.create('map-canvas');
+	var socket = io.connect(window.location.host);
 
-  $('#add').click(function(){
+	var mapa = app.mapa.create('map-canvas', null, socket);
 
-      mapa.addLocal({ latitude: 52.3731, longitude: 4.8922, nome: 'POSTO AUTONOVO'});
+	$('#add').click(function(){
 
-  });
+		mapa.addLocal({ latitude: 52.3731, longitude: 4.8922, nome: 'POSTO AUTONOVO'});
+
+	});
 
 });
 

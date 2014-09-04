@@ -2,9 +2,13 @@
 
 	app.mapa = Object.new({
 		
-		initialize: function(elementId, done) {			
+		initialize: function(elementId, done, socket) {			
+			
+			var self = this;
+
 			this.elementId = elementId;
 			this.done = done;
+			this.socket = socket;
 			this.locais = ko.observableArray([]);
 
 			this.initializeMap({
@@ -12,6 +16,10 @@
 				scrollWheel: false,
 				zoom: 13
 		    });
+
+			socket.on('checkin', function(data){
+				self.addLocal(data);
+			});
 
 		    ko.applyBindings(this);
 		},
@@ -27,7 +35,7 @@
 		},
 
 		markerClicked: function(){
-			alert('clicou na bagaça');
+			console.log('clicou na bagaça');
 		},
 		addLocal: function(local){
 			
