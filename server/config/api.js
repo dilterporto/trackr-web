@@ -22,7 +22,9 @@ module.exports = function(app){
 
 	app.post('/api/checkin', function(req, res){
 
-		app.io.emit('checkin', { latitude: 52.3731, longitude: 4.8922, nome: 'POSTO AUTONOVO'} );
+		console.log(req.body);
+
+		app.io.emit('checkin', req.body );
 
 		res.send(200);		
 

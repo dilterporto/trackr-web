@@ -1,10 +1,15 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var checkin = new Schema({
+var CheckinSchema = new Schema({
+	rota: String,
 	local: {
-		type: Schema.ObjectId,
-		ref: 'local'
+		geolocalizacao:{
+			latitude: String,
+			longitude: String
+		},
+		endereco: String,
+		nome: String
 	},
 	agente:{
 		type: Schema.ObjectId,
@@ -17,4 +22,4 @@ var checkin = new Schema({
 	observacao: String
 });
 
-mongoose.model('checkin', checkin);
+mongoose.model('checkin', CheckinSchema);

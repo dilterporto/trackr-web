@@ -1,16 +1,31 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var rota = new Schema({
+var RotaSchema = new Schema({
 	nome: String,
 	locais: [
 		{
-			type: Schema.ObjectId,
-			ref: 'local' 
+			geolocalicazao: {
+				latitude: String,
+				longitude: String
+			},
+			nome: String,
+			checkin: {
+				type: Schema.ObjectId,
+				ref: 'checkin'
+			}
 		}
 	]
 
 
 });
 
-mongoose.model('rota', rota);
+RotaSchema.methods.checkin(function(){
+
+
+
+});
+
+
+
+mongoose.model('rota', RotaSchema);
