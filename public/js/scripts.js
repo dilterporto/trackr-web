@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 	$('#add').click(function(){
 
-		mapa.addLocal({ latitude: -19.40374852874205, longitude: -40.0591364688255, nome: 'POSTO AUTONOVO', agente: 'Maria Almeida'});
+		mapa.addLocal({ rota: '#666', latitude: -19.40374852874205, longitude: -40.0591364688255, nome: 'POSTO AUTONOVO', agente: 'Maria Almeida'});
 
 	});
 

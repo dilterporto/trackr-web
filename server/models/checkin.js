@@ -3,18 +3,16 @@ var mongoose = require('mongoose'),
 
 var CheckinSchema = new Schema({
 	rota: String,
-	local: {
-		geolocalizacao:{
-			latitude: String,
-			longitude: String
-		},
+	local: {		
+		latitude: String,
+		longitude: String,
 		endereco: String,
 		nome: String
 	},
 	agente:{
 		type: Schema.ObjectId,
 		ref: 'agente'
-	}
+	},
 	momento: {
 		type: Date,
 		default: Date.now

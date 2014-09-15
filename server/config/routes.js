@@ -1,6 +1,23 @@
+var mongoose = require('mongoose');
+
+require('../models/checkin');
+
+var Checkin = mongoose.model('checkin');
+
 module.exports = function(app){
+	
 	app.get('/', function(req, res) {
-	  res.render('index', { title: 'Express' });
+
+		Checkin
+	  	.find()
+	  	.populate('agente')
+	  	.exec(function(err, checkins){
+
+			if(err)
+				res.send(500);
+
+			res.render('index', { title: 'Express', checkins: checkins });
+		});
 	});
 
 

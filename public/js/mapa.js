@@ -6,10 +6,17 @@
 			
 			var self = this;
 
+
+			var _model = $('#__model');
+        	console.log(JSON.parse(_model.val()));
+        	
+
+
 			this.elementId = elementId;
 			this.done = done;
 			this.socket = socket;
 			this.locais = ko.observableArray([]);
+			this.modelLocais = JSON.parse(_model.val());
 
 			this.initializeMap({
 				center: new google.maps.LatLng(-19.398036, -40.0622827),
@@ -30,21 +37,37 @@
 				
 				self.map = new google.maps.Map(document.getElementById(self.elementId), mapOptions);
 
-				// self.done();
+				self.addLocais(self.modelLocais);
 			});
 		},
 
 		markerClicked: function(){
 			console.log('clicou na bagaça');
 		},
-		addLocal: function(local){
+		addLocais: function(locais){
 			
-			var _local = ko.mapping.fromJS(local);
+			var self = this;
 
-			var latlng = new google.maps.LatLng(_local.latitude(), _local.longitude());
+			var _l = locais.map(function(curr, ind, arr){
+				return {
+					nome: curr.local.nome,
+					rota: '#' + curr.rota,
+					latitude: parseFloat(curr.local.latitude),
+					longitude: parseFloat(curr.local.longitude),
+					agente: curr.agente.nome
+				}
+			});
+
+			for(var i = 0, len = _l.length; i < len; i++){
+				self.addLocal(_l[i]);
+			}
+		},
+		addMarcadorNoMapa: function(local){
+			
+			var latlng = new google.maps.LatLng(local.latitude(), local.longitude());
 
 			var marker = new google.maps.Marker({
-				title: _local.nome(),
+				title: local.nome(),
 				position: latlng,
 				draggable: true,
 				url: '/',
@@ -55,19 +78,27 @@
 		    
 		    google.maps.event.addListener(marker, 'drag', function() {
 		        var pos = marker.getPosition();
-		        _local.latitude(pos.lat());
-		        _local.longitude(pos.lng());
+		        local.latitude(pos.lat());
+		        local.longitude(pos.lng());
 		    }.bind(this));
 		    
 		    google.maps.event.addListener(marker, 'dragend', function() {
 		        var pos = marker.getPosition();
-		        _local.latitude(pos.lat());
-		        _local.longitude(pos.lng());
+		        local.latitude(pos.lat());
+		        local.longitude(pos.lng());
 		    }.bind(this));
 
 		    google.maps.event.addListener(marker, 'click', this.markerClicked);
 
-		    this.locais.push(_local);
+		    this.map.setCenter(new google.maps.LatLng(local.latitude(), local.longitude()));
+		},
+		addLocal: function(local){
+			
+			local = ko.mapping.fromJS(local);
+
+		    this.locais.push(local);
+
+		    this.addMarcadorNoMapa(local);		    
 		}
 	});
 

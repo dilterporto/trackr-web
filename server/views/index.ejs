@@ -4,7 +4,9 @@
 <div class="container-fluid" id="main">
   <div class="row">
   	<div class="col-xs-4" style="margin-left: 5px" id="left">
-
+      
+      <input id="__model" type="hidden" value="<%= JSON.stringify(checkins) %>" />
+      
 			<h2><i class="glyphicon glyphicon-map-marker"></i> check-in</h2>
 			<hr>
       
@@ -17,7 +19,7 @@
 			<div class="row">
         <ul class="list-group" data-bind="foreach: locais">
           <li class="list-group-item">
-            <label class="label label-success">#12</label>
+            <label class="label label-success" data-bind="text: rota"></label>
             <a href="" data-bind="text: agente"></a> em <a href="" data-bind="text: nome"></a><span class="badge">298kg</span>
             <br />
             <small><i class="glyphicon glyphicon-map-marker"></i> <span data-bind="text: latitude() + ' ' + longitude()"></span></small>            

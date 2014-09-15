@@ -6,4 +6,4 @@ var AgenteSchema = new Schema({
 	email: String
 });
 
-mongoose.model('agente', AgenteSchema	);
+mongoose.model('agente', AgenteSchema);

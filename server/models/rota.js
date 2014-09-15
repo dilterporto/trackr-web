@@ -5,27 +5,10 @@ var RotaSchema = new Schema({
 	nome: String,
 	locais: [
 		{
-			geolocalicazao: {
-				latitude: String,
-				longitude: String
-			},
-			nome: String,
-			checkin: {
-				type: Schema.ObjectId,
-				ref: 'checkin'
-			}
+			type: Schema.ObjectId,
+			ref: 'local' 
 		}
 	]
-
-
 });
-
-RotaSchema.methods.checkin(function(){
-
-
-
-});
-
-
 
 mongoose.model('rota', RotaSchema);
