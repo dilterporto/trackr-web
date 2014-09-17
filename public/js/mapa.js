@@ -6,17 +6,10 @@
 			
 			var self = this;
 
-
-			var _model = $('#__model');
-        	console.log(JSON.parse(_model.val()));
-        	
-
-
 			this.elementId = elementId;
 			this.done = done;
 			this.socket = socket;
 			this.locais = ko.observableArray([]);
-			this.modelLocais = JSON.parse(_model.val());
 
 			this.initializeMap({
 				center: new google.maps.LatLng(-19.398036, -40.0622827),
@@ -24,27 +17,28 @@
 				zoom: 15
 		    });
 
-			socket.on('checkin', function(data){
+			this.socket.on('checkin', function(data){
 				self.addLocal(data);
 			});
 
 		    ko.applyBindings(this);
 		},
 		initializeMap: function(mapOptions){
-			var self = this;
+
+            var self = this;
 
 			google.maps.event.addDomListener(window, 'load', function() {
 				
 				self.map = new google.maps.Map(document.getElementById(self.elementId), mapOptions);
 
-				self.addLocais(self.modelLocais);
+                self.done();
 			});
 		},
 
 		markerClicked: function(){
 			console.log('clicou na bagaça');
 		},
-		addLocais: function(locais){
+		load: function(locais){
 			
 			var self = this;
 

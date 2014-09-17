@@ -1,16 +1,24 @@
 
 $(document).ready(function() {
 
-	var socket = io.connect(window.location.host);
+    var aoIniciarMapa = function()
+    {
+        var locais = JSON.parse($('#__model').val());
 
-	var mapa = app.mapa.create('map-canvas', null, socket);
+        console.log(locais);
+
+        mapa.load(locais);
+    };
+
+    var socket = io.connect(window.location.host);
+
+	var mapa = app.mapa.create('map-canvas', aoIniciarMapa, socket);
 
 	$('#add').click(function(){
 
 		mapa.addLocal({ rota: '#666', latitude: -19.40374852874205, longitude: -40.0591364688255, nome: 'POSTO AUTONOVO', agente: 'Maria Almeida'});
 
 	});
-
 });
 
 
