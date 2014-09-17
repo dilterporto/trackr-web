@@ -70,7 +70,7 @@
 				title: local.nome(),
 				position: latlng,
 				draggable: true,
-				url: '/',
+				url: '/' + local.nome(),
 				animation: google.maps.Animation.DROP
 		    });
 
